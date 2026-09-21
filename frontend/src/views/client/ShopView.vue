@@ -14,8 +14,6 @@ import fakeData from '../../../../backend/data.json'
 
 const route = useRoute()
 
-
-
 const products = ref(fakeData)
 
 const groupedProducts = computed(() => {
