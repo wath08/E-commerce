@@ -1,68 +1,76 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import TopBar from '../../components/client/TopBar.vue'
-import Header from '../../components/client/Header.vue'
-import CategoryNav from '../../components/client/CategoryNav.vue'
+import ClientLayout from '../../layouts/ClientLayout.vue'
 import BrandSidebar from '../../components/client/BrandSidebar.vue'
 import PromoBanner from '../../components/client/PromoBanner.vue'
 import ProductCard from '../../components/client/ProductCard.vue'
-import Footer from '../../components/client/Footer.vue'
+
+// Import dynamic data utilities
+import { subcategoryMap, brandMap } from '../../utils/categoryData'
 
 // @ts-ignore
 import fakeData from '../../../../backend/data.json'
 
 const route = useRoute()
-
 const products = ref(fakeData)
 
+const currentMainCategory = computed(() => (route.params.categoryId as string) || 'laptop')
+const availableSubcategories = computed(() => subcategoryMap[currentMainCategory.value] || [])
+const currentBrands = computed(() => brandMap[currentMainCategory.value] || [])
+
 const groupedProducts = computed(() => {
-  // Always initialize all 5 brands so the page structure never collapses!
-  const groups: Record<string, typeof products.value> = {
-    'Apple': [],
-    'ASUS': [],
-    'MSI': [],
-    'Lenovo': [],
-    'Dell': []
-  }
+  const groups: Record<string, typeof products.value> = {}
   
-  // Read ONLY the category filter (Gaming vs Office)
-  const selectedCategory = route.query.category as string
-  console.log('Recomputing with selectedCategory:', selectedCategory)
+  // Initialize all brands for the CURRENT main category so the page structure doesn't collapse
+  currentBrands.value.forEach(brand => {
+    groups[brand] = []
+  })
+  
+  const selectedSubcategory = route.query.category as string
   
   products.value.forEach((p: any) => {
-    // Hide product ONLY if a specific category was clicked and it doesn't match
-    if (selectedCategory && p.category !== selectedCategory) {
+    if (p.main_category && p.main_category !== currentMainCategory.value) {
       return
     }
     
-    // Group everything by brand so all sections stay visible on the screen
-    if (!groups[p.brand]) groups[p.brand] = []
-    groups[p.brand].push(p)
+    if (selectedSubcategory && p.category !== selectedSubcategory) {
+      return
+    }
+    
+    if (groups[p.brand] !== undefined) {
+      groups[p.brand].push(p)
+    }
   })
   return groups
 })
 </script>
 
 <template>
-  <div class="min-h-screen bg-white">
-    
-    <div class="max-w-[1250px] mx-auto px-6 lg:px-8 ">
-      <TopBar />
-      <Header />
-      <CategoryNav />
-    </div>
-
+  <ClientLayout>
     <div class="sticky top-0 z-50 bg-white">
       <div class="max-w-[1250px] mx-auto px-6 lg:px-8">
-        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white">
+        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white overflow-x-auto">
           <span class="mr-2 uppercase tracking-widest text-gray-400">Subcategory:</span>
           
-          <router-link :to="{ query: { ...route.query, category: undefined } }" :class="!route.query.category ? 'bg-blue-600 text-white shadow-sm' : 'bg-gray-50 hover:bg-gray-100 border'" class="px-5 py-2 rounded-full transition block">All</router-link>
+          <router-link 
+            :to="{ query: { ...route.query, category: undefined } }" 
+            :class="!route.query.category ? 'bg-blue-600 text-white shadow-sm' : 'bg-gray-50 hover:bg-gray-100 border border-gray-200'" 
+            class="px-5 py-2 rounded-full transition block whitespace-nowrap"
+          >
+            All
+          </router-link>
           
-          <router-link :to="{ query: { ...route.query, category: 'Gaming Laptop' } }" :class="route.query.category === 'Gaming Laptop' ? 'bg-blue-600 text-white shadow-sm' : 'bg-gray-50 hover:bg-gray-100 border'" class="px-5 py-2 rounded-full transition block">Gaming Laptop</router-link>
-          
-          <router-link :to="{ query: { ...route.query, category: 'Office Laptop' } }" :class="route.query.category === 'Office Laptop' ? 'bg-blue-600 text-white shadow-sm' : 'bg-gray-50 hover:bg-gray-100 border'" class="px-5 py-2 rounded-full transition block">Office Laptop</router-link>
+          <router-link 
+            v-for="sub in availableSubcategories" 
+            :key="sub.name"
+            :to="{ query: { ...route.query, category: sub.name } }" 
+            :class="route.query.category === sub.name ? 'bg-blue-600 text-white shadow-sm border-blue-600' : 'bg-gray-50 hover:bg-gray-100 border-gray-200'" 
+            class="px-5 py-2 rounded-full transition flex items-center border whitespace-nowrap"
+          >
+            <span v-html="sub.icon" class="w-4 h-4 mr-2 inline-block opacity-70"></span>
+            {{ sub.name }}
+          </router-link>
 
         </div>
       </div>
@@ -78,41 +86,59 @@ const groupedProducts = computed(() => {
         <main class="flex-1 bg-white pl-8 pt-4 pb-8">
           <PromoBanner />
           
-          <!-- Clean 404 Product Not Found State -->
-          <div v-if="Object.keys(groupedProducts).length === 0" class="py-24 flex flex-col items-center justify-center text-center font-sans">
-            <svg class="w-20 h-20 text-gray-200 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a,2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
-            </svg>
-            <h2 class="text-5xl font-black text-gray-800 tracking-tighter mb-2">404</h2>
-            <p class="text-lg font-extrabold text-gray-400 tracking-[0.2em] uppercase mb-6">Product Not Found</p>
-            <p class="text-sm text-gray-500 mb-8 max-w-sm leading-relaxed">
-              We couldn't find any laptops matching your current filter.
+                                                                      <!-- Market Standard Empty Search State -->
+          <div v-if="Object.values(groupedProducts).every(group => group.length === 0)" class="py-24 flex flex-col items-center justify-center text-center">
+            
+            <div class="mb-8">
+              <svg class="w-24 h-24 text-gray-700 mx-auto" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(20,20) rotate(-45) translate(-20,-20)">
+                   <!-- Outer Ring -->
+                   <circle cx="20" cy="14" r="10" />
+                   <!-- Inner Ring -->
+                   <circle cx="20" cy="14" r="6" />
+                   
+                   <!-- Glass Reflection Arc (Top-Right when rotated) -->
+                   <path d="M 23.5 10.5 A 4.5 4.5 0 0 1 24.5 14.5" />
+                   <!-- Glass Reflection Dot -->
+                   <line x1="24" y1="16.5" x2="23.8" y2="17" />
+                   
+                   <!-- Handle Collar -->
+                   <rect x="17.5" y="24" width="5" height="2.5" />
+                   <!-- Handle Body -->
+                   <rect x="18" y="26.5" width="4" height="9" rx="2" />
+                </g>
+              </svg>
+            </div>
+            
+            <h3 class="text-2xl font-medium text-gray-800 mb-2">No products found</h3>
+            <p class="text-gray-500 text-base max-w-sm mx-auto leading-relaxed">
+              We couldn't find exactly what you're looking for. Try a distinct category.
             </p>
-            <router-link to="/" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm py-3 px-8 rounded-full shadow-md transition-all duration-200 hover:shadow-lg">
-              View All Laptops
-            </router-link>
+            
           </div>
           
           <!-- Product Grid Sections -->
-          <div v-for="(group, brand) in groupedProducts" :key="brand" :id="brand" class="pt-10 pb-6 scroll-mt-28">
-            <h2 class="text-2xl font-extrabold mb-6 flex items-center gap-3 text-gray-900">
-              <span class="bg-black text-white text-sm px-3 py-1.5 rounded tracking-widest uppercase">{{ brand }}</span> 
-              {{ brand }} Laptops
-            </h2>
-            
-            <div v-if="group.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
-              <router-link 
-                v-for="product in group" 
-                :key="product.id"
-                :to="`/product/${product.id}`" 
-                class="block border-r border-b border-gray-100"
-              >
-                <ProductCard :product="product" />
-              </router-link>
-            </div>
-            <div v-else class="py-12 px-6 border-2 border-dashed border-gray-100 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50">
-              <svg class="w-10 h-10 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-              <p class="text-sm font-medium">No laptops found for {{ brand }} in this category.</p>
+          <div v-else>
+            <div v-for="(group, brand) in groupedProducts" :key="brand" :id="brand" class="pt-10 pb-6 scroll-mt-28">
+              <h2 class="text-2xl font-extrabold mb-6 flex items-center gap-3 text-gray-900">
+                <span class="bg-black text-white text-sm px-3 py-1.5 rounded tracking-widest uppercase">{{ brand }}</span> 
+                {{ brand }} Products
+              </h2>
+              
+              <div v-if="group.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
+                <router-link 
+                  v-for="product in group" 
+                  :key="product.id"
+                  :to="`/product/${product.id}`" 
+                  class="block border-r border-b border-gray-100"
+                >
+                  <ProductCard :product="product" />
+                </router-link>
+              </div>
+              <div v-else class="py-12 px-6 border-2 border-dashed border-gray-100 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50">
+                <svg class="w-10 h-10 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                <p class="text-sm font-medium">No products found for {{ brand }} in this category.</p>
+              </div>
             </div>
           </div>
           
@@ -120,8 +146,5 @@ const groupedProducts = computed(() => {
         
       </div>
     </div>
-    
-    <Footer />
-    
-  </div>
+  </ClientLayout>
 </template>

@@ -13,7 +13,8 @@
       "- Storage : <span class=\"text-red-600\">256GB SSD</span>",
       "- Screen : <span class=\"text-red-600\">13.6\" Liquid Retina</span>",
       "- OS : macOS Sonoma"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 2,
@@ -29,7 +30,8 @@
       "- Storage : <span class=\"text-red-600\">512GB SSD</span>",
       "- Screen : <span class=\"text-red-600\">15.3\" Liquid Retina</span>",
       "- OS : macOS Sonoma"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 3,
@@ -45,7 +47,8 @@
       "- Storage : <span class=\"text-red-600\">512GB SSD</span>",
       "- Screen : <span class=\"text-red-600\">14.2\" Liquid Retina XDR 120Hz</span>",
       "- OS : macOS Sonoma"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 4,
@@ -61,7 +64,8 @@
       "- Storage : <span class=\"text-red-600\">512GB SSD</span>",
       "- Screen : <span class=\"text-red-600\">16.2\" Liquid Retina XDR 120Hz</span>",
       "- OS : macOS Sonoma"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 5,
@@ -77,7 +81,8 @@
       "- Storage : <span class=\"text-red-600\">1TB SSD</span>",
       "- Screen : <span class=\"text-red-600\">14.2\" Liquid Retina XDR 120Hz</span>",
       "- OS : macOS Sonoma"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 6,
@@ -93,7 +98,8 @@
       "- Storage : <span class=\"text-red-600\">1TB SSD</span>",
       "- Screen : <span class=\"text-red-600\">16.2\" Liquid Retina XDR 120Hz</span>",
       "- OS : macOS Sonoma"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 7,
@@ -109,7 +115,8 @@
       "- Storage : <span class=\"text-red-600\">512GB PCIe 4.0</span>",
       "- Screen : <span class=\"text-red-600\">14\" QHD+ Nebula 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4060 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 8,
@@ -125,7 +132,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" FHD+ 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4060 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 9,
@@ -141,7 +149,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">15.6\" FHD 144Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 3050 4GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 10,
@@ -157,7 +166,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" QHD+ Mini LED 240Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4070 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 11,
@@ -173,7 +183,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">14\" 3K OLED 120Hz</span>",
       "- VGA : <span class=\"text-red-600\">Intel Arc Graphics</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 12,
@@ -189,7 +200,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">14\" FHD Anti-glare</span>",
       "- VGA : <span class=\"text-red-600\">Intel Iris Xe</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 13,
@@ -205,7 +217,8 @@
       "- Storage : <span class=\"text-red-600\">2TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">17.3\" 4K Mini LED 144Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4090 16GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 14,
@@ -221,7 +234,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">17\" QHD+ 240Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4080 12GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 15,
@@ -237,7 +251,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" QHD+ 240Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4070 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 16,
@@ -253,7 +268,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">15.6\" FHD 144Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4070 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 17,
@@ -269,7 +285,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" 2.8K OLED 120Hz</span>",
       "- VGA : <span class=\"text-red-600\">Intel Arc Graphics</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 18,
@@ -285,7 +302,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">14\" FHD IPS</span>",
       "- VGA : <span class=\"text-red-600\">Intel Iris Xe</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 19,
@@ -301,7 +319,8 @@
       "- Storage : <span class=\"text-red-600\">2TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" 3.2K Mini LED 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4090 16GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 20,
@@ -317,7 +336,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" WQXGA 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4060 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 21,
@@ -333,7 +353,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">15.6\" FHD 144Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 3050 6GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 22,
@@ -349,7 +370,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">14\" WUXGA Anti-glare</span>",
       "- VGA : <span class=\"text-red-600\">Intel Iris Xe</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 23,
@@ -365,7 +387,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">14\" WUXGA IPS</span>",
       "- VGA : <span class=\"text-red-600\">Radeon\u2122 Graphics</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 24,
@@ -381,7 +404,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" WUXGA IPS</span>",
       "- VGA : <span class=\"text-red-600\">Radeon\u2122 Graphics</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 25,
@@ -397,7 +421,8 @@
       "- Storage : <span class=\"text-red-600\">2TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">18\" QHD+ 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4080 12GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 26,
@@ -413,7 +438,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" QHD+ 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4070 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 27,
@@ -429,7 +455,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">15.6\" FHD 165Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4050 6GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 28,
@@ -445,7 +472,8 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">15.6\" 3.5K OLED Touch</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4070 8GB</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 29,
@@ -461,7 +489,8 @@
       "- Storage : <span class=\"text-red-600\">512GB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">13.4\" FHD+ Touch</span>",
       "- VGA : <span class=\"text-red-600\">Intel Iris Xe</span>"
-    ]
+    ],
+    "main_category": "laptop"
   },
   {
     "id": 30,
@@ -477,6 +506,92 @@
       "- Storage : <span class=\"text-red-600\">1TB NVMe</span>",
       "- Screen : <span class=\"text-red-600\">16\" 2.5K 120Hz</span>",
       "- VGA : <span class=\"text-red-600\">RTX\u2122 4060 8GB</span>"
+    ],
+    "main_category": "laptop"
+  },
+  {
+    "id": 101,
+    "name": "Intel Core i9-14900K",
+    "brand": "Intel",
+    "main_category": "pc-hardware",
+    "category": "CPU",
+    "price": 589.0,
+    "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80",
+    "specs": [
+      "- Socket: <span class=\"text-red-600\">LGA 1700</span>",
+      "- Cores: <span class=\"text-red-600\">24 (8P+16E)</span>",
+      "- Base Clock: <span class=\"text-red-600\">3.2 GHz</span>",
+      "- Boost Clock: <span class=\"text-red-600\">6.0 GHz</span>"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "NVIDIA GeForce RTX 4090 Founders Edition",
+    "brand": "NVIDIA",
+    "main_category": "pc-hardware",
+    "category": "GPU",
+    "price": 1599.0,
+    "image": "https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=600&q=80",
+    "specs": [
+      "- VRAM: <span class=\"text-red-600\">24GB GDDR6X</span>",
+      "- Cores: <span class=\"text-red-600\">16384 CUDA</span>",
+      "- Interface: <span class=\"text-red-600\">PCIe 4.0 x16</span>"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "AMD Ryzen 7 7800X3D",
+    "brand": "AMD",
+    "main_category": "pc-hardware",
+    "category": "CPU",
+    "price": 449.0,
+    "image": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?auto=format&fit=crop&w=600&q=80",
+    "specs": [
+      "- Socket: <span class=\"text-red-600\">AM5</span>",
+      "- Cores: <span class=\"text-red-600\">8</span>",
+      "- Cache: <span class=\"text-red-600\">96MB L3</span>"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Gigabyte Z790 AORUS MASTER",
+    "brand": "Gigabyte",
+    "main_category": "pc-hardware",
+    "category": "Motherboard",
+    "price": 499.0,
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
+    "specs": [
+      "- Socket: <span class=\"text-red-600\">LGA 1700</span>",
+      "- Memory: <span class=\"text-red-600\">DDR5</span>",
+      "- Form Factor: <span class=\"text-red-600\">E-ATX</span>"
+    ]
+  },
+  {
+    "id": 201,
+    "name": "Logitech G Pro X Superlight",
+    "brand": "Logitech",
+    "main_category": "peripherals",
+    "category": "Mouse",
+    "price": 149.0,
+    "image": "https://images.unsplash.com/photo-1527814050087-379381547949?auto=format&fit=crop&w=600&q=80",
+    "specs": [
+      "- Weight: <span class=\"text-red-600\">< 63g</span>",
+      "- Sensor: <span class=\"text-red-600\">HERO 25K</span>",
+      "- Connectivity: <span class=\"text-red-600\">Wireless</span>"
+    ]
+  },
+  {
+    "id": 202,
+    "name": "Keychron Q1 Pro",
+    "brand": "Keychron",
+    "main_category": "peripherals",
+    "category": "Keyboard",
+    "price": 199.0,
+    "image": "https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&w=600&q=80",
+    "specs": [
+      "- Layout: <span class=\"text-red-600\">75%</span>",
+      "- Switch: <span class=\"text-red-600\">K Pro Red</span>",
+      "- Body: <span class=\"text-red-600\">Full Aluminum</span>"
     ]
   }
 ]

@@ -1,4 +1,29 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { brandMap } from '../../utils/categoryData'
+
+const route = useRoute()
+const currentCategory = computed(() => (route.params.categoryId as string) || 'laptop')
+
+const brandLogos: Record<string, any> = {
+  'Apple': { logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', height: 'h-11 mx-auto origin-center' },
+  'ASUS': { logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg', height: 'h-6 origin-left' },
+  'MSI': { logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Micro-Star_International_logo.svg', height: 'h-5 origin-left' },
+  'Lenovo': { logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg', height: 'h-6 origin-left' },
+  'Dell': { logo: '/dell-logo-cropped.png', height: 'h-8 origin-left' }
+}
+
+const currentBrands = computed(() => {
+  const brands = brandMap[currentCategory.value] || []
+  return brands.map(name => {
+    if (brandLogos[name]) {
+      return { name, ...brandLogos[name] }
+    }
+    return { name, textLogo: true }
+  })
+})
+
 const scrollToBrand = (e: Event, id: string) => {
   e.preventDefault();
   const el = document.getElementById(id);
@@ -30,33 +55,34 @@ const scrollToBrand = (e: Event, id: string) => {
 }
 </script>
 
+
 <template>
   <aside class="w-48 hidden lg:block bg-white p-6 sticky top-[70px]">
-    <h3 class="font-black text-xl tracking-widest text-gray-800 uppercase mb-6">Brands</h3>
-    <!-- Removed items-start so children can stretch full width -->
+    <h3 class="font-black text-xs tracking-widest text-gray-800 uppercase mb-6">Brands</h3>
     <div class="space-y-4 flex flex-col">
       
-      <!-- group class on the full-width anchor, group-hover on the image -->
-      <a href="#Apple" @click="scrollToBrand($event, 'Apple')" class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="h-11 mx-auto w-auto object-contain transition-transform duration-300 origin-center group-hover:scale-110" alt="Apple" />
-      </a>
-      
-      <a href="#ASUS" @click="scrollToBrand($event, 'ASUS')" class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg" class="h-6 w-auto object-contain transition-transform duration-300 origin-left group-hover:scale-110" alt="ASUS" />
-      </a>
-      
-      <a href="#MSI" @click="scrollToBrand($event, 'MSI')" class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Micro-Star_International_logo.svg" class="h-5 w-auto object-contain transition-transform duration-300 origin-left group-hover:scale-110" alt="MSI" />
-      </a>
-      
-      <a href="#Lenovo" @click="scrollToBrand($event, 'Lenovo')" class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg" class="h-6 w-auto object-contain transition-transform duration-300 origin-left group-hover:scale-110" alt="Lenovo" />
-      </a>
-      
-      <a href="#Dell" @click="scrollToBrand($event, 'Dell')" class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors">
-        <img src="/dell-logo-cropped.png" class="h-8 w-auto object-contain transition-transform duration-300 origin-left group-hover:scale-110" alt="Dell" />
+      <a 
+        v-for="brand in currentBrands" 
+        :key="brand.name"
+        :href="`#${brand.name}`" 
+        @click="scrollToBrand($event, brand.name)" 
+        class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors"
+      >
+        <img 
+          v-if="brand.logo" 
+          :src="brand.logo" 
+          :class="`${brand.height} w-auto object-contain transition-transform duration-300 group-hover:scale-110`" 
+          :alt="brand.name" 
+        />
+        <div 
+          v-else 
+          class="text-xl font-black text-gray-400 group-hover:text-blue-600 transition-colors duration-300 group-hover:translate-x-1 transform inline-block"
+        >
+          {{ brand.name }}
+        </div>
       </a>
 
     </div>
   </aside>
 </template>
+
