@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import ShopView from '../views/client/ShopView.vue'
 import ProductDetail from '../views/client/ProductDetail.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory('/E-commerce/'),
   routes: [
     { path: '/', name: 'shop', component: ShopView },
     { path: '/product/:id', name: 'product-detail', component: ProductDetail }
