@@ -32,7 +32,7 @@ const scrollToBrand = (e: Event, id: string) => {
 
 <template>
   <aside class="w-48 hidden lg:block bg-white p-6 sticky top-[70px]">
-    <h3 class="font-black text-xs tracking-widest text-gray-800 uppercase mb-6">Brands</h3>
+    <h3 class="font-black text-xl tracking-widest text-gray-800 uppercase mb-6">Brands</h3>
     <!-- Removed items-start so children can stretch full width -->
     <div class="space-y-4 flex flex-col">
       

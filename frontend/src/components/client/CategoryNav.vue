@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full bg-white border-b py-5 flex gap-4 md:gap-12 justify-center items-center text-sm font-bold text-gray-500">
+  <nav class="w-full bg-white border-b border-gray-100 py-5 flex gap-4 md:gap-12 justify-center items-center text-sm font-bold text-gray-500">
     
     <div class="flex items-center gap-2 text-blue-600 cursor-pointer">
       <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
@@ -10,7 +10,7 @@
       LAPTOP
     </div>
     
-    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l pl-4 md:pl-12">
+    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l border-gray-100 pl-4 md:pl-12">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
         <rect x="3" y="3" width="10" height="18" rx="1"></rect>
         <line x1="5" y1="6" x2="11" y2="6"></line>
@@ -21,7 +21,7 @@
       PC HARDWARE
     </div>
     
-    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l pl-4 md:pl-12">
+    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l border-gray-100 pl-4 md:pl-12">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
         <rect x="2" y="5" width="20" height="14" rx="2"></rect>
         <path d="M5 9h.01 M9 9h.01 M13 9h.01 M17 9h.01"></path>
@@ -32,7 +32,7 @@
       PERIPHERALS
     </div>
     
-    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l pl-4 md:pl-12">
+    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l border-gray-100 pl-4 md:pl-12">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
         <rect x="3" y="3" width="18" height="18" rx="2"></rect>
         <circle cx="12" cy="11" r="5"></circle>
@@ -45,7 +45,7 @@
       ACCESSORIES
     </div>
     
-    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l pl-4 md:pl-12">
+    <div class="flex items-center gap-2 hover:text-blue-600 cursor-pointer transition border-l border-gray-100 pl-4 md:pl-12">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
         <rect x="2" y="3" width="20" height="13" rx="1"></rect>
         <path d="M8 20h8M12 16v4"></path>

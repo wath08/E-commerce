@@ -36,7 +36,7 @@ const handleLogoClick = (e: Event) => {
 </script>
 
 <template>
-  <header class="w-full bg-white py-2 flex justify-between items-center border-b">
+  <header class="w-full bg-white py-2 flex justify-between items-center border-b border-gray-100">
     <!-- Logo -->
     <a href="/" @click="handleLogoClick" class="cursor-pointer inline-block">
       <img src="/logo.jpeg" alt="Tech Simplify Store" class="h-20 w-auto object-contain mix-blend-multiply">

@@ -54,7 +54,7 @@ const handleLogoClick = (e: Event) => {
           </p>
           
           <div class="text-sm text-gray-500 mt-2">
-            <p>Any Question, Call: <span class="text-gray-900 font-medium">081 797 679 | 099 797 679</span></p>
+            <p>Any Question, Call: <span class="text-gray-900 font-medium">012 345 678 | 098 765 4321</span></p>
           </div>
           
           <div class="flex flex-col gap-4 mt-2">

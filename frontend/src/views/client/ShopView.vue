@@ -55,7 +55,7 @@ const groupedProducts = computed(() => {
 
     <div class="sticky top-0 z-50 bg-white">
       <div class="max-w-[1250px] mx-auto px-6 lg:px-8">
-        <div class="w-full border-b py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white">
+        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white">
           <span class="mr-2 uppercase tracking-widest text-gray-400">Subcategory:</span>
           
           <router-link :to="{ query: { ...route.query, category: undefined } }" :class="!route.query.category ? 'bg-blue-600 text-white shadow-sm' : 'bg-gray-50 hover:bg-gray-100 border'" class="px-5 py-2 rounded-full transition block">All</router-link>
@@ -100,17 +100,17 @@ const groupedProducts = computed(() => {
               {{ brand }} Laptops
             </h2>
             
-            <div v-if="group.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-gray-200">
+            <div v-if="group.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
               <router-link 
                 v-for="product in group" 
                 :key="product.id"
                 :to="`/product/${product.id}`" 
-                class="block border-r border-b border-gray-200"
+                class="block border-r border-b border-gray-100"
               >
                 <ProductCard :product="product" />
               </router-link>
             </div>
-            <div v-else class="py-12 px-6 border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50">
+            <div v-else class="py-12 px-6 border-2 border-dashed border-gray-100 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50">
               <svg class="w-10 h-10 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
               <p class="text-sm font-medium">No laptops found for {{ brand }} in this category.</p>
             </div>
