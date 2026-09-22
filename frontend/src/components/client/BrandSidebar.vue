@@ -61,7 +61,7 @@ const scrollToBrand = (e: Event, id: string) => {
     <h3 class="font-black text-[10px] lg:text-xs tracking-widest text-gray-800 uppercase mb-3 lg:mb-6 hidden lg:block">Brands</h3>
     
     <!-- Container: Flex Row (Horizontal Scroll) on Mobile -> Flex Col on Desktop -->
-    <div class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible scrollbar-hide gap-6 lg:gap-0 items-center lg:items-start pb-2 lg:pb-0 space-y-0 lg:space-y-4">
+    <div class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible scrollbar-hide gap-6 lg:gap-0 items-center lg:items-start pb-2 lg:pb-0 space-y-0 lg:space-y-4 overscroll-x-contain" style="-webkit-overflow-scrolling: touch;">
       
       <a 
         v-for="brand in currentBrands" 

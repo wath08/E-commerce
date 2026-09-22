@@ -1,7 +1,7 @@
 <template>
   <nav :class="['w-full text-[11px] md:text-[15px] tracking-wide font-bold text-gray-500 transition-all duration-300', $route.name === 'product-detail' ? 'sticky top-0 z-40 bg-white/95 backdrop-blur-md' : 'bg-white relative z-30']">
   <div class="max-w-[1250px] w-full mx-auto px-6 lg:px-8">
-    <div class="w-full border-b border-gray-200 flex justify-start lg:justify-center items-center overflow-x-auto scrollbar-hide whitespace-nowrap flex-nowrap">
+    <div class="w-full border-b border-gray-200 flex justify-start lg:justify-center items-center overflow-x-auto scrollbar-hide whitespace-nowrap flex-nowrap overscroll-x-contain" style="-webkit-overflow-scrolling: touch;">
     
     <router-link to="/category/laptop" active-class="text-blue-600" class="flex items-center flex-shrink-0 gap-1.5 md:gap-2 hover:text-blue-600 cursor-pointer transition py-4 md:py-5 px-4 md:px-8">
       <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 md:w-7 md:h-7">

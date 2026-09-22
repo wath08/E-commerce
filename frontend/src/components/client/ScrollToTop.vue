@@ -2,12 +2,15 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const isVisible = ref(false)
+let ticking = false
 
 const toggleVisibility = () => {
-  if (window.scrollY > 300) {
-    isVisible.value = true
-  } else {
-    isVisible.value = false
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      isVisible.value = window.scrollY > 300
+      ticking = false
+    })
+    ticking = true
   }
 }
 
@@ -19,7 +22,8 @@ const scrollToTop = () => {
 }
 
 onMounted(() => {
-  window.addEventListener('scroll', toggleVisibility)
+  // Using passive: true is CRITICAL for mobile scrolling performance
+  window.addEventListener('scroll', toggleVisibility, { passive: true })
 })
 
 onUnmounted(() => {
@@ -32,7 +36,7 @@ onUnmounted(() => {
     <button
       v-show="isVisible"
       @click="scrollToTop"
-      class="fixed bottom-6 right-4 md:bottom-22 md:right-10 z-50 px-4 py-2.5 md:px-5 md:py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+      class="fixed bottom-6 right-4 md:bottom-22 md:right-10 z-50 px-4 py-2.5 md:px-5 md:py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2 transform-gpu shadow-lg"
       aria-label="Scroll to top"
     >
       <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
@@ -47,6 +51,7 @@ onUnmounted(() => {
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
 }
 .fade-enter-from,
 .fade-leave-to {

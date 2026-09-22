@@ -50,7 +50,7 @@ const groupedProducts = computed(() => {
   <ClientLayout>
     <div class="sticky top-0 z-50 bg-white">
       <div class="max-w-[1250px] mx-auto px-6 lg:px-8">
-        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white overflow-x-auto scrollbar-hide whitespace-nowrap">
+        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white overflow-x-auto scrollbar-hide whitespace-nowrap overscroll-x-contain" style="-webkit-overflow-scrolling: touch;">
           <span class="mr-2 uppercase tracking-widest text-gray-400">Subcategory:</span>
           
           <router-link 
@@ -125,7 +125,7 @@ const groupedProducts = computed(() => {
                 {{ brand }} Products
               </h2>
               
-              <div v-if="group.length > 0" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
+              <div v-if="group.length > 0" class="grid grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
                 <router-link 
                   v-for="product in group" 
                   :key="product.id"
