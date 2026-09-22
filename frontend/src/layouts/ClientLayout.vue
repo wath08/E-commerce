@@ -3,6 +3,7 @@ import TopBar from '../components/client/TopBar.vue'
 import Header from '../components/client/Header.vue'
 import CategoryNav from '../components/client/CategoryNav.vue'
 import Footer from '../components/client/Footer.vue'
+import ScrollToTop from '../components/client/ScrollToTop.vue'
 </script>
 
 <template>
@@ -10,8 +11,8 @@ import Footer from '../components/client/Footer.vue'
     <div class="max-w-[1250px] w-full mx-auto px-6 lg:px-8">
       <TopBar />
       <Header />
-      <CategoryNav />
     </div>
+    <CategoryNav />
 
     <!-- The actual page content goes here -->
     <div class="flex-1">
@@ -19,5 +20,6 @@ import Footer from '../components/client/Footer.vue'
     </div>
 
     <Footer />
+    <ScrollToTop />
   </div>
 </template>

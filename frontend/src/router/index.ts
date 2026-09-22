@@ -15,6 +15,9 @@ const router = createRouter({
       return false; // Maintains current scroll position
     }
     
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' }
+    }
     if (savedPosition) {
       return savedPosition
     }

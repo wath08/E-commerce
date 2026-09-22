@@ -1,0 +1,56 @@
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const isVisible = ref(false)
+
+const toggleVisibility = () => {
+  if (window.scrollY > 300) {
+    isVisible.value = true
+  } else {
+    isVisible.value = false
+  }
+}
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', toggleVisibility)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', toggleVisibility)
+})
+</script>
+
+<template>
+  <transition name="fade">
+    <button
+      v-show="isVisible"
+      @click="scrollToTop"
+      class="fixed bottom-22 right-10 z-50 px-5 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:-translate-y-1 transition-all duration-300 cursor-pointer flex items-center justify-center gap-2"
+      aria-label="Scroll to top"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+      </svg>
+      <span class="font-bold text-sm tracking-wider uppercase">Up</span>
+    </button>
+  </transition>
+</template>
+
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(0.95);
+}
+</style>

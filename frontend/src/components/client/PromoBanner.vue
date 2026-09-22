@@ -17,7 +17,7 @@ const nextSlide = () => {
 }
 
 const startAutoplay = () => {
-  intervalId = window.setInterval(nextSlide, 3000) // Change image every 3 seconds
+  intervalId = window.setInterval(nextSlide, 4000) // Change image every 3 seconds
 }
 
 onMounted(() => {
@@ -31,18 +31,32 @@ onUnmounted(() => {
 
 <template>
   <div class="relative w-full overflow-hidden border-b bg-white">
-    <!-- Carousel Track (Slides) -->
-    <div 
-      class="flex transition-transform duration-700 ease-in-out"
-      :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
-    >
-      <div 
-        v-for="(banner, index) in banners" 
-        :key="index"
-        class="w-full flex-shrink-0"
-      >
-        <img :src="banner" alt="Promo Banner" class="w-full h-auto object-cover" />
-      </div>
-    </div>
+    <!-- Invisible spacer to dynamically set the height based on the image proportion -->
+    <img :src="banners[0]" class="w-full h-auto opacity-0 block pointer-events-none" aria-hidden="true" />
+    
+    <transition-group name="slide-forward" tag="div">
+      <img 
+        v-for="(banner, index) in banners"
+        :key="banner"
+        v-show="currentIndex === index"
+        :src="banner" 
+        alt="Promo Banner" 
+        class="absolute top-0 left-0 w-full h-full object-cover"
+      />
+    </transition-group>
   </div>
 </template>
+
+<style scoped>
+.slide-forward-enter-active,
+.slide-forward-leave-active {
+  transition: transform 0.7s ease-in-out;
+}
+.slide-forward-enter-from {
+  transform: translateX(100%);
+}
+.slide-forward-leave-to {
+  transform: translateX(-100%);
+}
+</style>
+

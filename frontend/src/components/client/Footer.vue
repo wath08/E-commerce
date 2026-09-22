@@ -6,31 +6,15 @@ const route = useRoute()
 
 const handleLogoClick = (e: Event) => {
   e.preventDefault();
+  
+  // Smooth scroll to top natively
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  
+  // If not on home page, also navigate back to home
   if (route.path !== '/') {
-    router.push('/').then(() => {
-      window.scrollTo(0, 0);
-    });
-  } else {
-    // Custom smooth scroll to top
-    const startY = window.scrollY;
-    if (startY === 0) return;
-    
-    const duration = 600;
-    let start: number | null = null;
-    
-    const step = (timestamp: number) => {
-      if (!start) start = timestamp;
-      const progress = timestamp - start;
-      const percent = Math.min(progress / duration, 1);
-      const ease = 1 - Math.pow(1 - percent, 3);
-      
-      window.scrollTo(0, startY * (1 - ease));
-      
-      if (progress < duration) {
-        window.requestAnimationFrame(step);
-      }
-    };
-    window.requestAnimationFrame(step);
+    setTimeout(() => {
+      router.push('/');
+    }, 300); // Wait a tiny bit so the scroll starts feeling smooth before route change
   }
 }
 </script>

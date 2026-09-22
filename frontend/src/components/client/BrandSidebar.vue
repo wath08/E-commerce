@@ -7,11 +7,11 @@ const route = useRoute()
 const currentCategory = computed(() => (route.params.categoryId as string) || 'laptop')
 
 const brandLogos: Record<string, any> = {
-  'Apple': { logo: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg', height: 'h-11 mx-auto origin-center' },
-  'ASUS': { logo: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/ASUS_Logo.svg', height: 'h-6 origin-left' },
-  'MSI': { logo: 'https://upload.wikimedia.org/wikipedia/commons/9/91/Micro-Star_International_logo.svg', height: 'h-5 origin-left' },
-  'Lenovo': { logo: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/Lenovo_logo_2015.svg', height: 'h-6 origin-left' },
-  'Dell': { logo: '/dell-logo-cropped.png', height: 'h-8 origin-left' }
+  'Apple': { logo: '/brands/apple.svg', height: 'h-11 mx-auto origin-center' },
+  'ASUS': { logo: '/brands/asus.svg', height: 'h-6 origin-left' },
+  'MSI': { logo: '/brands/msi.svg', height: 'h-5 origin-left' },
+  'Lenovo': { logo: '/brands/lenovo.svg', height: 'h-6 origin-left' },
+  'Dell': { logo: '/brands/dell.png', height: 'h-8 origin-left' }
 }
 
 const currentBrands = computed(() => {
