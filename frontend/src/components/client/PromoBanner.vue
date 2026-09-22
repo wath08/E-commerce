@@ -34,23 +34,22 @@ onUnmounted(() => {
     <!-- Invisible spacer to dynamically set the height based on the image proportion -->
     <img :src="banners[0]" class="w-full h-auto opacity-0 block pointer-events-none" aria-hidden="true" />
     
-    <transition-group name="slide-forward" tag="div">
+    <transition name="slide-forward">
       <img 
-        v-for="(banner, index) in banners"
-        :key="banner"
-        v-show="currentIndex === index"
-        :src="banner" 
+        :key="currentIndex"
+        :src="banners[currentIndex]" 
         alt="Promo Banner" 
-        class="absolute top-0 left-0 w-full h-full object-cover"
+        class="absolute inset-0 w-full h-full object-cover shadow-sm"
       />
-    </transition-group>
+    </transition>
   </div>
 </template>
 
 <style scoped>
 .slide-forward-enter-active,
 .slide-forward-leave-active {
-  transition: transform 0.7s ease-in-out;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 .slide-forward-enter-from {
   transform: translateX(100%);

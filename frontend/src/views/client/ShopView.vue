@@ -4,12 +4,12 @@ import { useRoute } from 'vue-router'
 import ClientLayout from '../../layouts/ClientLayout.vue'
 import BrandSidebar from '../../components/client/BrandSidebar.vue'
 import PromoBanner from '../../components/client/PromoBanner.vue'
+
 import ProductCard from '../../components/client/ProductCard.vue'
 
 // Import dynamic data utilities
 import { subcategoryMap, brandMap } from '../../utils/categoryData'
 
-// @ts-ignore
 import fakeData from '../../../../backend/data.json'
 
 const route = useRoute()
@@ -50,7 +50,7 @@ const groupedProducts = computed(() => {
   <ClientLayout>
     <div class="sticky top-0 z-50 bg-white">
       <div class="max-w-[1250px] mx-auto px-6 lg:px-8">
-        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white overflow-x-auto">
+        <div class="w-full border-b border-gray-100 py-4 flex gap-4 text-xs font-bold items-center text-gray-500 bg-white overflow-x-auto scrollbar-hide whitespace-nowrap">
           <span class="mr-2 uppercase tracking-widest text-gray-400">Subcategory:</span>
           
           <router-link 
@@ -77,15 +77,15 @@ const groupedProducts = computed(() => {
     </div>
 
     <div class="max-w-[1250px] mx-auto px-6 lg:px-8">
-      <div class="flex w-full mt-2 relative items-start">
+      <div class="flex flex-col lg:flex-row w-full mt-2 relative items-start">
         
-        <div class="sticky top-[70px] self-start flex-shrink-0">
+        <div class="sticky top-[64px] lg:top-[70px] z-20 bg-white w-full lg:w-auto self-start flex-shrink-0 border-b border-gray-100 lg:border-none">
           <BrandSidebar />
         </div>
 
-        <main class="flex-1 bg-white pl-8 pt-4 pb-8">
+        <main class="flex-1 bg-white w-full lg:pl-8 pt-4 pb-8">
           <PromoBanner />
-          
+                    
                                                                       <!-- Market Standard Empty Search State -->
           <div v-if="Object.values(groupedProducts).every(group => group.length === 0)" class="py-24 flex flex-col items-center justify-center text-center">
             

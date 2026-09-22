@@ -7,11 +7,11 @@ const route = useRoute()
 const currentCategory = computed(() => (route.params.categoryId as string) || 'laptop')
 
 const brandLogos: Record<string, any> = {
-  'Apple': { logo: '/brands/apple.svg', height: 'h-11 mx-auto origin-center' },
-  'ASUS': { logo: '/brands/asus.svg', height: 'h-6 origin-left' },
-  'MSI': { logo: '/brands/msi.svg', height: 'h-5 origin-left' },
-  'Lenovo': { logo: '/brands/lenovo.svg', height: 'h-6 origin-left' },
-  'Dell': { logo: '/brands/dell.png', height: 'h-8 origin-left' }
+  'Apple': { logo: '/brands/apple.svg', height: 'h-8 lg:h-11 mx-auto lg:origin-center' },
+  'ASUS': { logo: '/brands/asus.svg', height: 'h-4 lg:h-6 origin-left' },
+  'MSI': { logo: '/brands/msi.svg', height: 'h-4 lg:h-5 origin-left' },
+  'Lenovo': { logo: '/brands/lenovo.svg', height: 'h-4 lg:h-6 origin-left' },
+  'Dell': { logo: '/brands/dell.png', height: 'h-6 lg:h-8 origin-left' }
 }
 
 const currentBrands = computed(() => {
@@ -55,18 +55,20 @@ const scrollToBrand = (e: Event, id: string) => {
 }
 </script>
 
-
 <template>
-  <aside class="w-48 hidden lg:block bg-white p-6 sticky top-[70px]">
-    <h3 class="font-black text-xs tracking-widest text-gray-800 uppercase mb-6">Brands</h3>
-    <div class="space-y-4 flex flex-col">
+  <!-- Mobile & Desktop Sidebar -->
+  <aside class="w-full lg:w-48 bg-white p-4 lg:p-6 lg:sticky top-[70px] border-b lg:border-b-0 border-gray-100 z-10">
+    <h3 class="font-black text-[10px] lg:text-xs tracking-widest text-gray-800 uppercase mb-3 lg:mb-6 hidden lg:block">Brands</h3>
+    
+    <!-- Container: Flex Row (Horizontal Scroll) on Mobile -> Flex Col on Desktop -->
+    <div class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible scrollbar-hide gap-6 lg:gap-0 items-center lg:items-start pb-2 lg:pb-0 space-y-0 lg:space-y-4">
       
       <a 
         v-for="brand in currentBrands" 
         :key="brand.name"
         :href="`#${brand.name}`" 
         @click="scrollToBrand($event, brand.name)" 
-        class="group block w-full py-4 -ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors"
+        class="group flex-shrink-0 block lg:w-full lg:py-4 lg:-ml-2 px-2 cursor-pointer rounded-lg hover:bg-gray-50 transition-colors"
       >
         <img 
           v-if="brand.logo" 
@@ -76,7 +78,7 @@ const scrollToBrand = (e: Event, id: string) => {
         />
         <div 
           v-else 
-          class="text-xl font-black text-gray-400 group-hover:text-blue-600 transition-colors duration-300 group-hover:translate-x-1 transform inline-block"
+          class="text-sm lg:text-xl font-black text-gray-400 group-hover:text-blue-600 transition-colors duration-300 group-hover:translate-x-1 transform inline-block"
         >
           {{ brand.name }}
         </div>
@@ -85,4 +87,3 @@ const scrollToBrand = (e: Event, id: string) => {
     </div>
   </aside>
 </template>
-

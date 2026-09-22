@@ -2,6 +2,7 @@
 import TopBar from '../components/client/TopBar.vue'
 import Header from '../components/client/Header.vue'
 import CategoryNav from '../components/client/CategoryNav.vue'
+import LogoCarousel from '../components/client/LogoCarousel.vue'
 import Footer from '../components/client/Footer.vue'
 import ScrollToTop from '../components/client/ScrollToTop.vue'
 </script>
@@ -19,6 +20,7 @@ import ScrollToTop from '../components/client/ScrollToTop.vue'
       <slot />
     </div>
 
+    <LogoCarousel />
     <Footer />
     <ScrollToTop />
   </div>
