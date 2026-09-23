@@ -10,7 +10,7 @@ import ProductCard from '../../components/client/ProductCard.vue'
 // Import dynamic data utilities
 import { subcategoryMap, brandMap } from '../../utils/categoryData'
 
-import fakeData from '../../../../backend/data.json'
+import fakeData from '../../data.json'
 
 const route = useRoute()
 const products = ref(fakeData)

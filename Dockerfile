@@ -1,6 +1,6 @@
 # Multi‑stage build for the Vue frontend
-# -------------------------------------------------
-# 1️⃣ Builder stage – install deps and compile the app
+
+#  Builder stage – install deps and compile the app
 FROM node:20-alpine AS builder
 WORKDIR /app
 # Copy only package files first for efficient caching

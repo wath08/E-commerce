@@ -5,7 +5,7 @@ import ClientLayout from '../../layouts/ClientLayout.vue'
 import ProductCard from '../../components/client/ProductCard.vue'
 
 // @ts-ignore
-import fakeData from '../../../../backend/data.json'
+import fakeData from '../../data.json'
 
 const route = useRoute()
 
