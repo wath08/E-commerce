@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
 const route = useRoute()
+const cartItemCount = ref(0) // Start with 0 items
 
 const handleLogoClick = (e: Event) => {
   e.preventDefault();
@@ -37,18 +39,32 @@ const handleLogoClick = (e: Event) => {
       <img src="/logo.jpeg" alt="Tech Simplify Store" class="h-14 md:h-16 lg:h-20 w-auto object-contain mix-blend-multiply">
     </a>
     
-    <!-- Social & Account -->
+    <!-- Global Actions -->
     <div class="flex gap-4 md:gap-8 text-sm font-semibold text-gray-500 flex-shrink-0">
-      <div class="flex flex-col items-center justify-center cursor-pointer hover:text-blue-600 transition">
-        <svg class="w-4 h-4 md:w-6 md:h-6 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path></svg>
-        <span class="text-[7px] md:text-[10px] tracking-wider">FACEBOOK</span>
+      
+      <!-- Favorite/Wishlist Icon -->
+      <div class="flex flex-col items-center justify-center cursor-pointer hover:text-red-500 transition">
+        <svg class="w-4 h-4 md:w-6 md:h-6 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+        </svg>
+        <span class="text-[7px] md:text-[10px] tracking-wider">FAVORITE</span>
       </div>
-      <div class="flex flex-col items-center justify-center cursor-pointer hover:text-blue-600 transition">
-        <svg class="w-4 h-4 md:w-6 md:h-6 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path></svg>
-        <span class="text-[7px] md:text-[10px] tracking-wider">TELEGRAM</span>
+
+      <!-- Cart Icon -->
+      <div class="flex flex-col items-center justify-center cursor-pointer hover:text-blue-600 transition relative">
+        <svg class="w-4 h-4 md:w-6 md:h-6 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+        </svg>
+        <!-- Badge only shows when items > 0 -->
+        <span v-if="cartItemCount > 0" class="absolute top-0 right-0 md:-mt-1 md:-mr-1 flex h-3 w-3 items-center justify-center rounded-full bg-red-500 text-[8px] text-white md:h-4 md:w-4 md:text-[10px]">
+          {{ cartItemCount }}
+        </span>
+        <span class="text-[7px] md:text-[10px] tracking-wider">CART</span>
       </div>
+
+      <!-- Account Icon -->
       <div class="flex flex-col items-center justify-center cursor-pointer hover:text-blue-600 transition">
-        <svg class="w-4 h-4 md:w-6 md:h-6 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z"></path></svg>
+        <svg class="w-4 h-4 md:w-6 md:h-6 mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path></svg>
         <span class="text-[7px] md:text-[10px] tracking-wider">ACCOUNT</span>
       </div>
     </div>

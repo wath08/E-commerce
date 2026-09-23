@@ -61,55 +61,72 @@ const formatSpec = (spec: string) => {
   <ClientLayout>
     <div class="py-12 px-6 lg:px-8 max-w-[1250px] mx-auto bg-white min-h-[600px]">
       
-                        <div v-if="product" class="flex flex-col lg:flex-row gap-12">
-        <!-- Product Image & Thumbnails -->
-        <div class="lg:w-5/12 flex flex-col gap-6">
-          <div class="w-full aspect-[4/3] lg:aspect-square overflow-hidden rounded-3xl border border-gray-100 bg-gray-50 flex justify-center items-center">
-            <img :src="gallery[activeThumb]" :alt="product.name" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-          </div>
-          <!-- Thumbnails (Dynamic Gallery) -->
-          <div class="flex gap-4 flex-wrap">
-            <div v-for="(img, idx) in gallery" :key="idx" @click="activeThumb = idx" 
-                 :class="['w-20 h-20 rounded-xl flex justify-center items-center overflow-hidden cursor-pointer bg-white transition-all', activeThumb === idx ? 'border-2 border-blue-500 shadow-sm' : 'border border-gray-200 hover:border-blue-300']">
-              <img :src="img" class="w-full h-full object-cover transition-opacity" :class="activeThumb === idx ? 'opacity-100' : 'opacity-60 hover:opacity-100'" />
-            </div>
-          </div>
-        </div>
-        
-        <!-- Product Info -->
-        <div class="lg:w-7/12 flex flex-col pt-4">
+      <div class="max-w-[1050px] mx-auto bg-white border border-gray-200 rounded-[28px] p-6 lg:p-8 shadow-sm mb-16">
+        <div v-if="product" class="flex flex-col lg:flex-row gap-8 lg:gap-12">
           
-          <div class="mb-4">
-            <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight mb-2" style="text-wrap: balance;">{{ product.name }}</h1>
-            <div class="text-xl md:text-2xl text-red-600 font-bold tracking-tight">
-              ${{ product.price.toLocaleString('en-US', {minimumFractionDigits: 2}) }}
+          <!-- Product Image & Thumbnails (Left Side) -->
+          <div class="lg:w-1/2 flex flex-col gap-6">
+            <div class="w-full aspect-[4/3] lg:aspect-[1/1.1] overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 flex justify-center items-center">
+              <img :src="gallery[activeThumb]" :alt="product.name" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
+            </div>
+            <!-- Thumbnails (Dynamic Gallery) -->
+            <div class="flex gap-4 flex-wrap">
+              <div v-for="(img, idx) in gallery" :key="idx" @click="activeThumb = idx" 
+                   :class="['w-20 h-20 rounded-2xl flex justify-center items-center overflow-hidden cursor-pointer bg-gray-50 transition-all', activeThumb === idx ? 'border-2 border-blue-400 shadow-sm' : 'border border-gray-200 hover:border-gray-300']">
+                <img :src="img" class="w-full h-full object-cover transition-opacity" :class="activeThumb === idx ? 'opacity-100' : 'opacity-60 hover:opacity-100'" />
+              </div>
             </div>
           </div>
           
-          <div class="text-[14px] md:text-[15px] text-gray-500 mb-6 font-medium">
-            Category: <span class="text-blue-600 uppercase">{{ product.main_category || 'LAPTOP' }}</span>
-          </div>
-          
-          <div class="mb-10">
-            <h3 class="text-lg md:text-xl font-bold mb-3 text-gray-900">About this product</h3>
-            <div class="space-y-1.5 text-[14px] md:text-[15px] leading-relaxed text-gray-700">
-              <template v-if="product.specs && product.specs.length > 0">
-                <div v-for="(spec, index) in product.specs" :key="index" v-html="formatSpec(spec)"></div>
-              </template>
-              <template v-else>
-                <div class="italic text-gray-400">No specifications available.</div>
-              </template>
+          <!-- Product Info (Right Side) -->
+          <div class="lg:w-1/2 flex flex-col">
+            
+            <div class="flex justify-between items-start gap-4 mb-4">
+              <div>
+                <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight mb-2" style="text-wrap: balance;">{{ product.name }}</h1>
+                <div class="text-2xl md:text-3xl text-red-600 font-bold">
+                  ${{ product.price.toLocaleString('en-US', {minimumFractionDigits: 2}) }}
+                </div>
+              </div>
+              
+              <!-- Favorite Button -->
+              <button class="text-gray-400 hover:text-red-500 transition-colors flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-7 h-7 md:w-8 md:h-8">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                </svg>
+              </button>
+            </div>
+            
+            <div class="text-[14px] text-gray-500 mb-6 font-medium">
+              Category: <span class="text-blue-600 uppercase">{{ product.main_category || 'LAPTOP' }}</span>
+            </div>
+            
+            <div class="w-full h-px bg-gray-200 mb-6"></div>
+            
+            <div class="mb-8">
+              <h3 class="text-[20px] font-bold mb-4 text-gray-900">About this product</h3>
+              <div class="space-y-1 text-[14px] md:text-[15px] leading-snug text-gray-700">
+                <template v-if="product.specs && product.specs.length > 0">
+                  <div v-for="(spec, index) in product.specs" :key="index" v-html="formatSpec(spec)"></div>
+                </template>
+                <template v-else>
+                  <div class="italic text-gray-400">No specifications available.</div>
+                </template>
+              </div>
+            </div>
+            
+            <div class="w-full h-px bg-gray-200 my-6 mt-auto"></div>
+            
+            <div class="flex gap-4">
+              <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm md:text-[15px] py-3 rounded-lg transition-all duration-300">
+                Add to Cart
+              </button>
+              <router-link :to="`/category/${product.main_category || 'laptop'}#${product.brand}`" class="flex-1 bg-black hover:bg-gray-900 text-white font-bold text-sm md:text-[15px] tracking-wider uppercase py-3 rounded-lg text-center flex items-center justify-center transition-all duration-300">
+                BACK TO {{ product.brand }}
+              </router-link>
             </div>
           </div>
           
-          <div class="flex gap-4 mt-auto border-t border-gray-100 pt-6">
-            <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm md:text-[15px] py-2.5 md:py-3 rounded-lg transition-all duration-300">
-              Add to Cart
-            </button>
-            <router-link :to="`/category/${product.main_category || 'laptop'}#${product.brand}`" class="flex-1 bg-black hover:bg-gray-900 text-white font-bold text-sm tracking-wider uppercase py-2.5 md:py-3 rounded-lg text-center flex items-center justify-center transition-all duration-300">
-              BACK TO {{ product.brand }}
-            </router-link>
-          </div>
         </div>
       </div>
       
