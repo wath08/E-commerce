@@ -5,7 +5,7 @@ import ClientLayout from '../../layouts/ClientLayout.vue'
 import ProductCard from '../../components/client/ProductCard.vue'
 
 // @ts-ignore
-import fakeData from '../../data.json'
+import fakeData from '../../../../backend/data.json'
 
 const route = useRoute()
 
@@ -63,36 +63,36 @@ const formatSpec = (spec: string) => {
       
                         <div v-if="product" class="flex flex-col lg:flex-row gap-12">
         <!-- Product Image & Thumbnails -->
-        <div class="lg:w-1/2 flex flex-col gap-6">
+        <div class="lg:w-5/12 flex flex-col gap-6">
           <div class="w-full aspect-[4/3] lg:aspect-square overflow-hidden rounded-3xl border border-gray-100 bg-gray-50 flex justify-center items-center">
             <img :src="gallery[activeThumb]" :alt="product.name" class="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
           </div>
           <!-- Thumbnails (Dynamic Gallery) -->
           <div class="flex gap-4 flex-wrap">
             <div v-for="(img, idx) in gallery" :key="idx" @click="activeThumb = idx" 
-                 :class="['w-20 h-20 rounded-xl flex justify-center items-center p-2 cursor-pointer bg-white transition-all', activeThumb === idx ? 'border-2 border-blue-500 shadow-sm' : 'border border-gray-200 hover:border-blue-300']">
-              <img :src="img" class="max-h-full max-w-full object-contain transition-opacity" :class="activeThumb === idx ? 'opacity-100' : 'opacity-60 hover:opacity-100'" />
+                 :class="['w-20 h-20 rounded-xl flex justify-center items-center overflow-hidden cursor-pointer bg-white transition-all', activeThumb === idx ? 'border-2 border-blue-500 shadow-sm' : 'border border-gray-200 hover:border-blue-300']">
+              <img :src="img" class="w-full h-full object-cover transition-opacity" :class="activeThumb === idx ? 'opacity-100' : 'opacity-60 hover:opacity-100'" />
             </div>
           </div>
         </div>
         
         <!-- Product Info -->
-        <div class="lg:w-1/2 flex flex-col pt-4">
+        <div class="lg:w-7/12 flex flex-col pt-4">
           
           <div class="mb-4">
-            <h1 class="text-3xl font-extrabold text-gray-900 leading-tight mb-2" style="text-wrap: balance;">{{ product.name }}</h1>
-            <div class="text-3xl text-red-600 font-extrabold tracking-tight">
+            <h1 class="text-2xl md:text-3xl font-extrabold text-gray-900 leading-tight mb-2" style="text-wrap: balance;">{{ product.name }}</h1>
+            <div class="text-xl md:text-2xl text-red-600 font-bold tracking-tight">
               ${{ product.price.toLocaleString('en-US', {minimumFractionDigits: 2}) }}
             </div>
           </div>
           
-          <div class="text-[13px] text-gray-500 mb-6 font-medium">
+          <div class="text-[14px] md:text-[15px] text-gray-500 mb-6 font-medium">
             Category: <span class="text-blue-600 uppercase">{{ product.main_category || 'LAPTOP' }}</span>
           </div>
           
           <div class="mb-10">
-            <h3 class="text-lg font-bold mb-4 text-gray-900">About this product</h3>
-            <div class="space-y-2 text-[13px] text-gray-700">
+            <h3 class="text-lg md:text-xl font-bold mb-3 text-gray-900">About this product</h3>
+            <div class="space-y-1.5 text-[14px] md:text-[15px] leading-relaxed text-gray-700">
               <template v-if="product.specs && product.specs.length > 0">
                 <div v-for="(spec, index) in product.specs" :key="index" v-html="formatSpec(spec)"></div>
               </template>
@@ -103,10 +103,10 @@ const formatSpec = (spec: string) => {
           </div>
           
           <div class="flex gap-4 mt-auto border-t border-gray-100 pt-6">
-            <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm py-2.5 rounded-lg transition-all duration-300">
+            <button class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm md:text-[15px] py-2.5 md:py-3 rounded-lg transition-all duration-300">
               Add to Cart
             </button>
-            <router-link :to="`/category/${product.main_category || 'laptop'}#${product.brand}`" class="flex-1 bg-black hover:bg-gray-900 text-white font-bold text-sm tracking-wider uppercase py-2.5 rounded-lg text-center flex items-center justify-center transition-all duration-300">
+            <router-link :to="`/category/${product.main_category || 'laptop'}#${product.brand}`" class="flex-1 bg-black hover:bg-gray-900 text-white font-bold text-sm tracking-wider uppercase py-2.5 md:py-3 rounded-lg text-center flex items-center justify-center transition-all duration-300">
               BACK TO {{ product.brand }}
             </router-link>
           </div>
@@ -114,10 +114,12 @@ const formatSpec = (spec: string) => {
       </div>
       
       <!-- Related Products -->
-      <div v-if="product && relatedProducts.length > 0" class="mt-24 pt-12 border-t border-gray-100">
-        <h2 class="text-2xl font-bold text-gray-900 mb-8">Related Products</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <ProductCard v-for="related in relatedProducts" :key="related.id" :product="related" />
+      <div v-if="product && relatedProducts.length > 0" class="mt-10 pt-8 border-t border-gray-100">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Products</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+          <div v-for="related in relatedProducts" :key="related.id" class="border border-gray-100 bg-white">
+            <ProductCard :product="related" :minimal="true" />
+          </div>
         </div>
       </div>
       

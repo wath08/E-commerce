@@ -8,6 +8,8 @@ COPY frontend/package*.json ./
 RUN npm ci
 # Copy the rest of the source code
 COPY frontend .
+# Copy backend data into the Docker context so relative imports from Vue work
+COPY backend/data.json /backend/data.json
 # Build the production assets
 RUN npm run build
 

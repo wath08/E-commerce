@@ -8,6 +8,7 @@ defineProps<{
     image: string
     specs?: string[]
   }
+  minimal?: boolean
 }>()
 
 // Smart formatter so the user doesn't have to write HTML in data.json
@@ -43,26 +44,25 @@ const formatSpec = (spec: string) => {
 </script>
 
 <template>
-  <router-link :to="'/product/' + product.id" class="p-4 md:p-6 cursor-pointer flex flex-col items-center bg-white h-full rounded-2xl block group">
-    <!-- Laptop Image (Clean white background) -->
-    <div class="w-full aspect-[4/3] flex items-center justify-center mb-6 overflow-hidden rounded-xl bg-gray-50 border border-gray-100/50">
+  <router-link :to="'/product/' + product.id" class="p-3 md:p-6 cursor-pointer flex flex-col items-center bg-white h-full block group">
+    
+    <!-- Laptop Image (Uniform size for ALL images) -->
+    <div class="w-full aspect-[4/3] flex items-center justify-center mb-3 overflow-hidden rounded-xl bg-gray-50 border border-gray-100/50">
       <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
     </div>
     
-    <!-- Separator Line -->
-    <div class="w-full border-t border-gray-200 mb-6"></div>
-    
     <!-- Laptop Details -->
-    <div class="w-full flex items-center justify-center min-h-[72px] mb-3">
-      <h4 class="text-sm md:text-lg font-extrabold text-center text-gray-900 line-clamp-3" style="text-wrap: balance;">{{ product.name }}</h4>
+    <div class="w-full flex items-center justify-center mb-1">
+      <h4 class="text-[13px] md:text-[17px] font-bold text-center text-gray-900 line-clamp-2" style="text-wrap: balance;">{{ product.name }}</h4>
     </div>
-    <div class="text-red-600 font-extrabold text-xl md:text-3xl mb-3 md:mb-6">${{ product.price.toLocaleString('en-US', {minimumFractionDigits: 2}) }}</div>
+    <div class="text-red-600 font-extrabold text-[16px] md:text-2xl mb-2 mt-auto">${{ product.price.toLocaleString('en-US', {minimumFractionDigits: 2}) }}</div>
     
-        <!-- Specs List (Left Aligned) -->
-    <div class="w-full text-left text-[11px] md:text-[13px] text-gray-600 leading-loose">
+    <!-- Specs List (Left Aligned) -->
+    <div v-if="!minimal" class="w-full text-left text-[11px] md:text-[13px] text-gray-600 leading-loose mt-4 border-t border-gray-100 pt-4">
       <template v-if="product.specs && product.specs.length > 0">
         <div v-for="(spec, index) in product.specs" :key="index" v-html="formatSpec(spec)"></div>
       </template>
     </div>
+    
   </router-link>
 </template>
