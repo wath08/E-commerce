@@ -125,7 +125,8 @@ const groupedProducts = computed(() => {
                 {{ brand }} Products
               </h2>
               
-              <div class="grid grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
+              <!-- Grid: renders when brand has products -->
+              <div v-if="group.length > 0" class="grid grid-cols-2 lg:grid-cols-3 gap-0 border-l border-gray-100 border-t border-gray-100">
                 <div
                   v-for="product in group"
                   :key="product.id"
@@ -134,6 +135,8 @@ const groupedProducts = computed(() => {
                   <ProductCard :product="product" />
                 </div>
               </div>
+
+              <!-- Empty state: renders when brand has no products in this subcategory -->
               <div v-else class="py-12 px-6 border-2 border-dashed border-gray-100 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50">
                 <svg class="w-10 h-10 mb-2 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
                 <p class="text-sm font-medium">No products found for {{ brand }} in this category.</p>
