@@ -31,20 +31,22 @@ export function useCart() {
 }
 
 // --- Wishlist State ---
-const wishlistState = reactive<{ ids: Set<number> }>({
-  ids: new Set()
+// ✅ Using a reactive array instead of Set — Vue cannot track Set mutations for re-rendering
+const wishlistState = reactive<{ ids: number[] }>({
+  ids: []
 })
 
 export function useWishlist() {
-  function isFavorited(productId: number) {
-    return wishlistState.ids.has(productId)
+  function isFavorited(productId: number): boolean {
+    return wishlistState.ids.includes(productId)
   }
 
   function toggleFavorite(productId: number) {
-    if (wishlistState.ids.has(productId)) {
-      wishlistState.ids.delete(productId)
+    const index = wishlistState.ids.indexOf(productId)
+    if (index !== -1) {
+      wishlistState.ids.splice(index, 1) // remove
     } else {
-      wishlistState.ids.add(productId)
+      wishlistState.ids.push(productId)  // add
     }
   }
 

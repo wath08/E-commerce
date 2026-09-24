@@ -39,16 +39,13 @@ const scrollToBrand = (e: Event, id: string) => {
     if (!start) start = timestamp;
     const progress = timestamp - start;
     const percent = Math.min(progress / duration, 1);
-    
     const ease = 1 - Math.pow(1 - percent, 3);
-    
     window.scrollTo(0, startY + (distance * ease));
-    
     if (progress < duration) {
       window.requestAnimationFrame(step);
-    } else {
-      history.pushState(null, '', `#${id}`);
     }
+    // ✅ Removed history.pushState — it was conflicting with Vue Router's hash mode
+    // causing the page to go blank when clicking a brand (URL became /#/Dell)
   };
   
   window.requestAnimationFrame(step);
