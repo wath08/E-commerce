@@ -9,7 +9,7 @@ A modern, full-stack E-Commerce platform built for high performance and security
 - **Infrastructure:** Docker & Docker Compose
 - **Database Management:** phpMyAdmin
 
-# Demo : (https://wath08-e-commerce.vercel.app/#/category/laptop)
+### Demo : https://wath08-e-commerce.vercel.app/#/category/laptop
 
 ## 📦 Prerequisites
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
